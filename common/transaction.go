@@ -9,7 +9,7 @@ import (
 
 const (
 	TxVersion      = 0x01
-	ExtraSizeLimit = 256
+	ExtraSizeLimit = 10 * 1024
 
 	OutputTypeScript           = 0x00
 	OutputTypeWithdrawalSubmit = 0xa1
