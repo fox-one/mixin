@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/storage"
 	"github.com/dimfeld/httptreemux"
 	"github.com/gorilla/handlers"
 	"github.com/unrolled/render"

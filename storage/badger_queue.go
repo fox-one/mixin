@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
 )
 
 type Queue struct {

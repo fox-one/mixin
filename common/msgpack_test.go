@@ -4,7 +4,7 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/assert"
 )

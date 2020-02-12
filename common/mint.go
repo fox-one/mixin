@@ -3,7 +3,7 @@ package common
 import (
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 )
 
 const (

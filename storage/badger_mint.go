@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
 	"github.com/dgraph-io/badger/v2"
 )
 

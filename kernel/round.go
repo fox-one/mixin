@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/network"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/network"
+	"github.com/fox-one/mixin/storage"
 )
 
 type CacheRound struct {

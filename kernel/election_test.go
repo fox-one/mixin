@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/storage"
 	"github.com/VictoriaMetrics/fastcache"
 	"github.com/stretchr/testify/assert"
 )

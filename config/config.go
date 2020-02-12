@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/logger"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/logger"
 )
 
 const (

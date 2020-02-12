@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/logger"
-	"github.com/MixinNetwork/mixin/rpc"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/logger"
+	"github.com/fox-one/mixin/rpc"
+	"github.com/fox-one/mixin/storage"
 	"github.com/VictoriaMetrics/fastcache"
 	"github.com/urfave/cli"
 )

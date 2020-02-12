@@ -3,7 +3,7 @@ package kernel
 import (
 	"sync"
 
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/storage"
 )
 
 type TopologicalSequence struct {

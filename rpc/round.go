@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/storage"
 )
 
 func getRoundLink(store storage.Store, params []interface{}) (uint64, error) {

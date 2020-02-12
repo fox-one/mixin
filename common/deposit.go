@@ -3,9 +3,9 @@ package common
 import (
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/domains/bitcoin"
-	"github.com/MixinNetwork/mixin/domains/ethereum"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/domains/bitcoin"
+	"github.com/fox-one/mixin/domains/ethereum"
 )
 
 type DepositData struct {

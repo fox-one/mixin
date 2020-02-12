@@ -1,4 +1,4 @@
-module github.com/MixinNetwork/mixin
+module github.com/fox-one/mixin
 
 go 1.13
 

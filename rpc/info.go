@@ -3,9 +3,9 @@ package rpc
 import (
 	"time"
 
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/storage"
 )
 
 func getInfo(store storage.Store, node *kernel.Node) (map[string]interface{}, error) {

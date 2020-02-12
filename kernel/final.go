@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
 )
 
 func (node *Node) checkFinalSnapshotTransaction(s *common.Snapshot) (*common.VersionedTransaction, error) {

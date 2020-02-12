@@ -3,9 +3,9 @@ package storage
 import (
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
 	"github.com/dgraph-io/badger/v2"
 )
 

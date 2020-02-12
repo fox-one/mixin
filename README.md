@@ -7,7 +7,7 @@ The Mixin BFT-DAG network reference implementation, the Trusted Execution Enviro
 Install golang and setup `GOPATH` following this guide https://golang.org/doc/install.
 
 ```bash
-$ git clone https://github.com/MixinNetwork/mixin.git
+$ git clone https://github.com/fox-one/mixin.git
 $ cd mixin
 $ go build
 ```
@@ -113,7 +113,7 @@ $ mixin signrawtransaction -n mixin-node:8239 \
 
 To start a node, create a directory `mixin` for the config and network data files, then put the genesis.json, nodes.json and config.json files in it.
 
-The main net genesis.json, nodes.json and an example config.example.json files can be obtained from [here](https://github.com/MixinNetwork/mixin/tree/master/config), you only need to put your own signer spend key in the config.json file.
+The main net genesis.json, nodes.json and an example config.example.json files can be obtained from [here](https://github.com/fox-one/mixin/tree/master/config), you only need to put your own signer spend key in the config.json file.
 
 ```
 $ mixin help kernel

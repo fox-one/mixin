@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
+	"github.com/fox-one/mixin/common"
 	"github.com/stretchr/testify/assert"
 )
 

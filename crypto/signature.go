@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/MixinNetwork/mixin/crypto/edwards25519"
+	"github.com/fox-one/mixin/crypto/edwards25519"
 )
 
 type Signature [64]byte

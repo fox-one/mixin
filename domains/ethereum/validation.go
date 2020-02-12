@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/gofrs/uuid"
 )
