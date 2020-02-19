@@ -58,7 +58,7 @@ func getTransaction(store storage.Store, params []interface{}) (map[string]inter
 	}
 	data := transactionToMap(tx)
 	data["hex"] = hex.EncodeToString(tx.Marshal())
-	if len(snap) > 0 {
+	if len(snap) > 0 && snap != "MISSING" {
 		data["snapshot"] = snap
 	}
 	return data, nil
