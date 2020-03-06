@@ -236,7 +236,7 @@ func transactionToMap(tx *common.VersionedTransaction) map[string]interface{} {
 		"asset":      tx.Asset,
 		"inputs":     inputs,
 		"outputs":    outputs,
-		"extra":      hex.EncodeToString(tx.Extra),
+		"extra":      tx.Extra,
 		"hash":       tx.PayloadHash(),
 		"signatures": tx.Signatures,
 	}
