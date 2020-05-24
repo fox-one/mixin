@@ -76,7 +76,9 @@ func buildGenesisSnapshots(networkId crypto.Hash, epoch uint64, gns *Genesis) ([
 		tx := common.NewTransaction(common.XINAssetId)
 		tx.Inputs = []*common.Input{{Genesis: networkId[:]}}
 		tx.AddOutputWithType(common.OutputTypeNodeAccept, accounts, script, pledgeAmount(0), seed)
-		tx.Extra = append(in.Signer.PublicSpendKey[:], in.Payee.PublicSpendKey[:]...)
+		signerPubKey := in.Signer.PublicSpendKey.Key()
+		payeePubKey := in.Payee.PublicSpendKey.Key()
+		tx.Extra = append(signerPubKey[:], payeePubKey[:]...)
 
 		nodeId := in.Signer.Hash().ForNetwork(networkId)
 		snapshot := common.Snapshot{
@@ -157,8 +159,9 @@ func buildDomainSnapshot(networkId crypto.Hash, epoch uint64, domain common.Addr
 	tx := common.NewTransaction(common.XINAssetId)
 	tx.Inputs = []*common.Input{{Genesis: networkId[:]}}
 	tx.AddOutputWithType(common.OutputTypeDomainAccept, accounts, script, common.NewInteger(50000), seed)
-	tx.Extra = make([]byte, len(domain.PublicSpendKey))
-	copy(tx.Extra, domain.PublicSpendKey[:])
+	domainPubKey := domain.PublicSpendKey.Key()
+	tx.Extra = make([]byte, len(domainPubKey))
+	copy(tx.Extra, domainPubKey[:])
 
 	signed := tx.AsLatestVersion()
 	if networkId.String() == config.MainnetId {
@@ -209,11 +212,11 @@ func readGenesis(path string) (*Genesis, error) {
 			return nil, fmt.Errorf("duplicated genesis node input %s", in.Signer.String())
 		}
 		privateView := in.Signer.PublicSpendKey.DeterministicHashDerive()
-		if privateView.Public() != in.Signer.PublicViewKey {
+		if privateView.Public().Key() != in.Signer.PublicViewKey.Key() {
 			return nil, fmt.Errorf("invalid node key format %s %s", privateView.Public().String(), in.Signer.PublicViewKey.String())
 		}
 		privateView = in.Payee.PublicSpendKey.DeterministicHashDerive()
-		if privateView.Public() != in.Payee.PublicViewKey {
+		if privateView.Public().Key() != in.Payee.PublicViewKey.Key() {
 			return nil, fmt.Errorf("invalid node key format %s %s", privateView.Public().String(), in.Payee.PublicViewKey.String())
 		}
 	}

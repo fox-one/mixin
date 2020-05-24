@@ -149,14 +149,15 @@ func (chain *Chain) assignNewGraphRound(final *FinalRound, cache *CacheRound) {
 	chain.State.RoundHistory = newRounds
 }
 
-func (node *Node) CacheVerify(snap crypto.Hash, sig crypto.Signature, pub crypto.Key) bool {
+func (node *Node) CacheVerify(snap crypto.Hash, sig crypto.Signature, pub crypto.PublicKey) bool {
+	pubKey := pub.Key()
 	key := append(snap[:], sig[:]...)
-	key = append(key, pub[:]...)
+	key = append(key, pubKey[:]...)
 	value := node.cacheStore.Get(nil, key)
 	if len(value) == 1 {
 		return value[0] == byte(1)
 	}
-	valid := pub.Verify(snap[:], sig)
+	valid := pub.Verify(snap[:], &sig)
 	if valid {
 		node.cacheStore.Set(key, []byte{1})
 	} else {
@@ -165,17 +166,18 @@ func (node *Node) CacheVerify(snap crypto.Hash, sig crypto.Signature, pub crypto
 	return valid
 }
 
-func (node *Node) CacheVerifyCosi(snap crypto.Hash, sig *crypto.CosiSignature, publics []*crypto.Key, threshold int) bool {
+func (node *Node) CacheVerifyCosi(snap crypto.Hash, sig *crypto.CosiSignature, publics []crypto.PublicKey, threshold int) bool {
 	if snap.String() == "b3ea56de6124ad2f3ad1d48f2aff8338b761e62bcde6f2f0acba63a32dd8eecc" &&
 		sig.String() == "dbb0347be24ecb8de3d66631d347fde724ff92e22e1f45deeb8b5d843fd62da39ca8e39de9f35f1e0f7336d4686917983470c098edc91f456d577fb18069620f000000003fdfe712" {
 		// FIXME this is a hack to fix the large round gap around node remove snapshot
 		// and a bug in too recent external reference, e.g. bare final round
 		return true
 	}
-	key := sig.Signature[:]
+	key := common.MsgpackMarshalPanic(sig)
 	key = append(snap[:], key...)
 	for _, pub := range publics {
-		key = append(key, pub[:]...)
+		pubKey := pub.Key()
+		key = append(key, pubKey[:]...)
 	}
 	tbuf := make([]byte, 8)
 	binary.BigEndian.PutUint64(tbuf, uint64(threshold))
@@ -186,14 +188,13 @@ func (node *Node) CacheVerifyCosi(snap crypto.Hash, sig *crypto.CosiSignature, p
 	if len(value) == 1 {
 		return value[0] == byte(1)
 	}
-	err := sig.FullVerify(publics, threshold, snap[:])
-	if err != nil {
-		logger.Verbosef("CacheVerifyCosi(%s, %d, %d) ERROR %s\n", snap, len(publics), threshold, err.Error())
+	if !sig.FullVerify(publics, threshold, snap[:]) {
+		logger.Verbosef("CacheVerifyCosi(%s, %d, %d) Failed\n", snap, len(publics), threshold)
 		node.cacheStore.Set(key, []byte{0})
 	} else {
 		node.cacheStore.Set(key, []byte{1})
 	}
-	return err == nil
+	return true
 }
 
 func (node *Node) checkInitialAcceptSnapshotWeak(s *common.Snapshot) bool {
@@ -252,7 +253,7 @@ func (node *Node) verifyFinalization(s *common.Snapshot) bool {
 	}
 	publics := node.ConsensusKeys(s.Timestamp)
 	if node.checkInitialAcceptSnapshotWeak(s) {
-		publics = append(publics, &node.ConsensusPledging.Signer.PublicSpendKey)
+		publics = append(publics, node.ConsensusPledging.Signer.PublicSpendKey)
 	}
 	base := node.ConsensusThreshold(s.Timestamp)
 	if node.CacheVerifyCosi(s.Hash, s.Signature, publics, base) {
@@ -260,8 +261,8 @@ func (node *Node) verifyFinalization(s *common.Snapshot) bool {
 	}
 	if rr := node.ConsensusRemovedRecently(s.Timestamp); rr != nil {
 		for i := range publics {
-			pwr := append([]*crypto.Key{}, publics[:i]...)
-			pwr = append(pwr, &rr.Signer.PublicSpendKey)
+			pwr := append([]crypto.PublicKey{}, publics[:i]...)
+			pwr = append(pwr, rr.Signer.PublicSpendKey)
 			pwr = append(pwr, publics[i:]...)
 			if node.CacheVerifyCosi(s.Hash, s.Signature, pwr, base) {
 				return true

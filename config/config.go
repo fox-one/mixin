@@ -70,7 +70,7 @@ func Initialize(file string) (*Custom, error) {
 	if err != nil {
 		return nil, err
 	}
-	config.Node.Signer = key
+	config.Node.Signer = *key
 	if config.Node.KernelOprationPeriod == 0 {
 		config.Node.KernelOprationPeriod = 700
 	}

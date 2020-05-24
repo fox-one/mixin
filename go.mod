@@ -29,6 +29,6 @@ require (
 	github.com/valyala/gozstd v1.8.3
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
-	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
+	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 	google.golang.org/appengine v1.6.6 // indirect
 )
