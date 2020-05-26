@@ -1,0 +1,46 @@
+{
+    "domains": [
+        {
+            "balance": "50000",
+            "signer": "XIN9ndZ6a15muApZicbDWghGgujYE3r4mPv5adpm4tBZyo1Pd9gZnvjSqwmMeZoJSbvLPgpHwp9c81gnpRPWi6TYTgz8MnQE7Y"
+        }
+    ],
+    "epoch": 1551312000,
+    "nodes": [
+        {
+            "balance": "10000",
+            "payee": "XINAzU78rY68cqhH1Ge4VGChND947sZrT5p3Dg2obANAZ4c9BhPzvnWVmg27TYkocZb6ugrvtn3Wh3aFa3R19D7bW7oVte3CuS",
+            "signer": "XIN9ndZ6a15muApZicbDWghGgujYE3r4mPv5adpm4tBZyo1Pd9gZnvjSqwmMeZoJSbvLPgpHwp9c81gnpRPWi6TYTgz8MnQE7Y"
+        },
+        {
+            "balance": "10000",
+            "payee": "XIN8EyxiMgziizn5LTzYuCbbTtqJeLvWMEazgNWX2ucKc4o7EUFzDyZiGxbiQGbTcfFLYXYZpZVeRj7xDGbBz8WSVYb86es1gx",
+            "signer": "XINAmpth9EsMG2EVsSdnytU2NMEzt7s1Ja2z2jBzSDFrCfjQGuc3uLiMtdWDeKD8CQyG1TmyW3DbLtD2h4kt3ThztFE5CmZYKZ"
+        },
+        {
+            "balance": "10000",
+            "payee": "XIN7vEDoA1yUos6gouev69nG7rhRWJ6qjSTrYSNr9onYgcqNzGBd3LQDgxDc9VXrdvwm5JBLzEiW7Tousi8nQYdUgWTS33nPkL",
+            "signer": "XIN8bEkA6BN5osgfLR8bqip2HTG3Z1WLmj9eD9TamGZAZbk6FPSKpJmh94hdxEa7CLoH6rtUNztE8pqwbp61p578aYjdYCwwKg"
+        },
+        {
+            "balance": "10000",
+            "payee": "XIN8Nw7DEZ1r1kEJeT2KarwetTsMFXt8hjhCpCMUCo7wksmPyfhmhyxrfo4ynfS6fFw3ZNTGppqpb3FV13DSyR9c7rh2tDu3SA",
+            "signer": "XINA2bsjr4dNb6zvuE1Nfn9KSCassr8ePnpfhAgFv2DzQ78XbpZj9DqiZyRV2nfmN4ggFkeD2QBGXh9KDbCDBSkiiK6MGjJodx"
+        },
+        {
+            "balance": "10000",
+            "payee": "XIN6hisNCAmLPMyYobn24itBx66PbxzUAGa3gsrfjtzBgXxvWEZmf4WiGTBSc2yAT7WAKZ7rTxfA4JVMEVUdSfMbdXQJxN28EU",
+            "signer": "XINAxMv5zGpnhdzp83FKdn1iHdZdDkDM9tbfJ1c4LcKr8CsKPxwQ6irPxTYWR6d2xthuTaWY6qbusJHmXLVnvf7w3CTm3oe7Do"
+        },
+        {
+            "balance": "10000",
+            "payee": "XIN9McmVBeT1JeXBXmfdKzUY2GEgyd74rwettzCzTmizsou1Ch8w5aFak4s1pxtNQ4VjcCyHuKRfDbK1UCZS2vyhkKuRx6hSDL",
+            "signer": "XIN7TpeLJrHwy33tFHLBEoECqVVEruRwR77RwvzKYY5X4yE8mcfhSUsZGerbwkcTxMUAhDVrpVj3XLUke8QtkZB8HraYmkMdbF"
+        },
+        {
+            "balance": "10000",
+            "payee": "XINAzngHHcph9GqHaQ7dvJ5vXYYavKgA9vBLFJ4iPjofYiTzixwPLsGwKAtgwjvnkhYjJxQY3GzkkKKuvPAWrFkYczdVKeZSoP",
+            "signer": "XIN6DByy9yCyWZWVaHwuJD7Jg3ueA7QBLGYRJmZghwsCWWmvJMdYhsL5axutSmQka6hqWdy4pv9YyevosdgeQ5YUX3GXYHeDXF"
+        }
+    ]
+}
