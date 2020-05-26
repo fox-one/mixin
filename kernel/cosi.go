@@ -392,7 +392,10 @@ func (chain *Chain) cosiHandleCommitment(m *CosiAction) error {
 		return err
 	}
 
-	signature := priv.SignWithChallenge(v.random, m.SnapshotHash[:], challenge)
+	signature, err := priv.SignWithChallenge(v.random, m.SnapshotHash[:], challenge)
+	if err != nil {
+		return err
+	}
 	if chain.node.checkInitialAcceptSnapshot(ann.Snapshot, tx) {
 		cosi.AggregateSignature(len(chain.node.SortedConsensusNodes), signature)
 	} else {
@@ -463,13 +466,19 @@ func (chain *Chain) cosiHandleChallenge(m *CosiAction) error {
 		return fmt.Errorf("invalid CosiSignature signature size: %d", len(m.Signature.Signatures))
 	}
 
-	var sig crypto.Signature
-	copy(sig[:], m.Signature.Signatures[0][:])
-	sig.WithCommitment(s.Commitment)
-	if !pub.VerifyWithChallenge(m.SnapshotHash[:], &sig, challenge) {
-		return nil
+	{
+		var sig crypto.Signature
+		copy(sig[:], m.Signature.Signatures[0][:])
+		sig.WithCommitment(s.Commitment)
+		if !pub.VerifyWithChallenge(m.SnapshotHash[:], &sig, challenge) {
+			return nil
+		}
 	}
-	response := m.Signature.DumpSignatureResponse(chain.node.Signer.PrivateSpendKey.SignWithChallenge(v.random, m.SnapshotHash[:], challenge))
+	sig, err := chain.node.Signer.PrivateSpendKey.SignWithChallenge(v.random, m.SnapshotHash[:], challenge)
+	if err != nil {
+		return err
+	}
+	response := m.Signature.DumpSignatureResponse(sig)
 	err = chain.node.Peer.SendSnapshotResponseMessage(m.PeerId, m.SnapshotHash, response[:])
 	if err != nil {
 		logger.Verbosef("CosiLoop cosiHandleAction cosiHandleChallenge SendSnapshotResponseMessage(%s, %s) ERROR %s\n", m.PeerId, m.SnapshotHash, err.Error())
@@ -511,10 +520,7 @@ func (chain *Chain) cosiHandleResponse(m *CosiAction) error {
 	for i, id := range chain.node.SortedConsensusNodes {
 		if id == m.PeerId {
 			commitment := agg.Commitments[i]
-			sig, err := agg.Snapshot.Signature.LoadResponseSignature(commitment, m.Response)
-			if err != nil {
-				return err
-			}
+			sig := agg.Snapshot.Signature.LoadResponseSignature(commitment, m.Response)
 			if err := agg.Snapshot.Signature.AggregateSignature(i, sig); err != nil {
 				return err
 			}
@@ -806,10 +812,7 @@ func (node *Node) CosiAggregateSelfResponses(peerId crypto.Hash, snap crypto.Has
 	if !ok {
 		return nil
 	}
-	sig, err := s.Signature.LoadResponseSignature(commitment, response)
-	if err != nil {
-		return nil
-	}
+	sig := s.Signature.LoadResponseSignature(commitment, response)
 	if !publics[index].VerifyWithChallenge(snap[:], sig, challenge) {
 		return nil
 	}
