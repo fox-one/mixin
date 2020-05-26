@@ -396,6 +396,7 @@ func (chain *Chain) cosiHandleCommitment(m *CosiAction) error {
 	if err != nil {
 		return err
 	}
+	ann.responsed[chain.node.IdForNetwork] = true
 	if chain.node.checkInitialAcceptSnapshot(ann.Snapshot, tx) {
 		cosi.AggregateSignature(len(chain.node.SortedConsensusNodes), signature)
 	} else {
