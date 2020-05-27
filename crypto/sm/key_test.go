@@ -17,8 +17,34 @@ func BenchmarkMarshalKey(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		var key crypto.Key
-		s, _ := json.Marshal(randomKey().Public().Key())
-		json.Unmarshal(s, &key)
+		r := randomKey()
+		R := r.Public().Key()
+
+		{
+			s, err := json.Marshal(r.Key())
+			if err != nil {
+				b.Fatal(err)
+			}
+			if err := json.Unmarshal(s, &key); err != nil {
+				b.Fatal(err)
+			}
+			if r.Key() != key {
+				b.Fatal("unmarshal key not matched")
+			}
+		}
+
+		{
+			s, err := json.Marshal(R)
+			if err != nil {
+				b.Fatal(err)
+			}
+			if err := json.Unmarshal(s, &key); err != nil {
+				b.Fatal(err)
+			}
+			if R != key {
+				b.Fatal("unmarshal key not matched")
+			}
+		}
 	}
 }
 
