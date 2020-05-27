@@ -19,7 +19,7 @@ func NewPrivateKeyFromSeed(seed []byte) (*PrivateKey, error) {
 
 	var priv PrivateKey
 	priv.D = new(big.Int).SetBytes(h[:])
-	priv.D = priv.D.Mod(priv.D, sm2P256.Params().N)
+	priv.D = priv.D.Mod(priv.D, N)
 	return &priv, nil
 }
 
@@ -37,7 +37,7 @@ func PrivateKeyFromKey(k crypto.Key) (*PrivateKey, error) {
 	}
 	var priv PrivateKey
 	priv.D = new(big.Int).SetBytes(k[1:])
-	priv.D = priv.D.Mod(priv.D, sm2P256.Params().N)
+	priv.D = priv.D.Mod(priv.D, N)
 	return &priv, nil
 }
 
@@ -48,22 +48,22 @@ func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
 
 	var pub PublicKey
 	pub.X = new(big.Int).SetBytes(k[1:])
-	pub.X = pub.X.Mod(pub.X, sm2P256.Params().P)
+	pub.X = pub.X.Mod(pub.X, P)
 
-	xCubed := new(big.Int).Exp(pub.X, three, sm2P256.Params().P)
+	xCubed := new(big.Int).Exp(pub.X, three, P)
 	threeX := new(big.Int).Mul(pub.X, three)
-	threeX.Mod(threeX, sm2P256.Params().P)
+	threeX.Mod(threeX, P)
 	ySqured := new(big.Int).Sub(xCubed, threeX)
-	ySqured.Add(ySqured, sm2P256.Params().B)
-	ySqured.Mod(ySqured, sm2P256.Params().P)
-	Y := new(big.Int).ModSqrt(ySqured, sm2P256.Params().P)
+	ySqured.Add(ySqured, B)
+	ySqured.Mod(ySqured, P)
+	Y := new(big.Int).ModSqrt(ySqured, P)
 	if Y == nil {
 		return nil, fmt.Errorf("invalid key value: %s", k)
 	}
 
 	if k[0] != byte(Y.Bit(0)+2) {
 		Y = Y.Neg(Y)
-		Y = Y.Mod(Y, sm2P256.Params().P)
+		Y = Y.Mod(Y, P)
 	}
 	pub.Y = Y
 	return &pub, nil

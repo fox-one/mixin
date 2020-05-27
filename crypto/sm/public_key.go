@@ -14,15 +14,8 @@ type PublicKey struct {
 	key *crypto.Key
 }
 
-var (
-	two   = big.NewInt(2)
-	three = big.NewInt(3)
-)
-
 func convertPublicKey(p crypto.PublicKey) *PublicKey {
 	switch v := p.(type) {
-	case PublicKey:
-		return &v
 	case *PublicKey:
 		return v
 	default:
@@ -30,7 +23,7 @@ func convertPublicKey(p crypto.PublicKey) *PublicKey {
 	}
 }
 
-func (p PublicKey) Key() crypto.Key {
+func (p *PublicKey) Key() crypto.Key {
 	if p.key == nil {
 		var key crypto.Key
 		xBts := p.X.Bytes()
@@ -52,7 +45,7 @@ func (p PublicKey) AddPublic(p1 crypto.PublicKey) crypto.PublicKey {
 		panic(fmt.Errorf("invalid public key: %v", p1))
 	}
 	s.X, s.Y = sm2P256.Add(p.X, p.Y, pub1.X, pub1.Y)
-	return s
+	return &s
 }
 
 func (p PublicKey) SubPublic(p1 crypto.PublicKey) crypto.PublicKey {
@@ -63,7 +56,7 @@ func (p PublicKey) SubPublic(p1 crypto.PublicKey) crypto.PublicKey {
 	}
 	Y1 := new(big.Int).Neg(pub1.Y)
 	s.X, s.Y = sm2P256.Add(p.X, p.Y, pub1.X, Y1)
-	return s
+	return &s
 }
 
 func (p PublicKey) ScalarHash(outputIndex uint64) crypto.PrivateKey {
@@ -73,7 +66,7 @@ func (p PublicKey) ScalarHash(outputIndex uint64) crypto.PrivateKey {
 
 	priv := PrivateKey{}
 	priv.D = new(big.Int).SetBytes(h[:])
-	priv.D = priv.D.Mod(priv.D, sm2P256.Params().N)
+	priv.D = priv.D.Mod(priv.D, N)
 	return &priv
 }
 
@@ -83,7 +76,7 @@ func (p PublicKey) DeterministicHashDerive() crypto.PrivateKey {
 
 	priv := PrivateKey{}
 	priv.D = new(big.Int).SetBytes(h[:])
-	priv.D = priv.D.Mod(priv.D, sm2P256.Params().N)
+	priv.D = priv.D.Mod(priv.D, N)
 	return &priv
 }
 

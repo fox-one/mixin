@@ -9,7 +9,7 @@ import (
 )
 
 type PrivateKey struct {
-	PublicKey *PublicKey
+	publicKey *PublicKey
 	D         *big.Int
 
 	key *crypto.Key
@@ -21,8 +21,6 @@ var (
 
 func convertPrivateKey(p crypto.PrivateKey) *PrivateKey {
 	switch v := p.(type) {
-	case PrivateKey:
-		return &v
 	case *PrivateKey:
 		return v
 	default:
@@ -34,22 +32,23 @@ func (p PrivateKey) String() string {
 	return p.Key().String()
 }
 
-func (p PrivateKey) Key() crypto.Key {
+func (p *PrivateKey) Key() crypto.Key {
 	if p.key == nil {
 		var key crypto.Key
-		copy(key[1:], p.D.Bytes()[:])
+		dBts := p.D.Bytes()
+		copy(key[len(key)-len(dBts):], dBts[:])
 		p.key = &key
 	}
 	return *p.key
 }
 
-func (p PrivateKey) Public() crypto.PublicKey {
-	if p.PublicKey == nil {
+func (p *PrivateKey) Public() crypto.PublicKey {
+	if p.publicKey == nil {
 		var pub PublicKey
 		pub.X, pub.Y = sm2P256.ScalarBaseMult(p.D.Bytes())
-		p.PublicKey = &pub
+		p.publicKey = &pub
 	}
-	return p.PublicKey
+	return p.publicKey
 }
 
 func (p PrivateKey) AddPrivate(p1 crypto.PrivateKey) crypto.PrivateKey {
@@ -59,7 +58,7 @@ func (p PrivateKey) AddPrivate(p1 crypto.PrivateKey) crypto.PrivateKey {
 		panic(fmt.Errorf("invalid private key: %v", p1))
 	}
 	s.D = new(big.Int).Add(p.D, priv1.D)
-	s.D = s.D.Mod(s.D, sm2P256.Params().N)
+	s.D = s.D.Mod(s.D, N)
 	return &s
 }
 
