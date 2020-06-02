@@ -9,9 +9,11 @@ import (
 
 type PublicKey struct {
 	*sm.PublicKey
-
-	key *crypto.Key
 }
+
+var (
+	emptyChallenge [32]byte
+)
 
 func convertPublicKey(p crypto.PublicKey) *PublicKey {
 	switch v := p.(type) {
@@ -23,11 +25,7 @@ func convertPublicKey(p crypto.PublicKey) *PublicKey {
 }
 
 func (p *PublicKey) Key() crypto.Key {
-	if p.key == nil {
-		key := crypto.Key(p.PublicKey.Bytes())
-		p.key = &key
-	}
-	return *p.key
+	return crypto.Key(p.PublicKey.Bytes())
 }
 
 func (p PublicKey) String() string {
@@ -59,7 +57,7 @@ func (p PublicKey) DeterministicHashDerive() crypto.PrivateKey {
 }
 
 func (p PublicKey) Challenge(R crypto.PublicKey, message []byte) [32]byte {
-	return [32]byte{}
+	return emptyChallenge
 }
 
 func (p PublicKey) VerifyWithChallenge(message []byte, sig *crypto.Signature, hReduced [32]byte) bool {

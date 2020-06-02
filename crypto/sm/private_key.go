@@ -12,8 +12,6 @@ import (
 type PrivateKey struct {
 	*sm.PrivateKey
 	publicKey *PublicKey
-
-	key *crypto.Key
 }
 
 var (
@@ -34,11 +32,7 @@ func (p PrivateKey) String() string {
 }
 
 func (p *PrivateKey) Key() crypto.Key {
-	if p.key == nil {
-		key := crypto.Key(p.PrivateKey.Bytes())
-		p.key = &key
-	}
-	return *p.key
+	return crypto.Key(p.PrivateKey.Bytes())
 }
 
 func (p *PrivateKey) Public() crypto.PublicKey {
