@@ -116,7 +116,7 @@ func (chain *Chain) cosiSendAnnouncement(m *CosiAction) error {
 	if chain.node.checkInitialAcceptSnapshot(s, tx) {
 		s.Timestamp = uint64(clock.Now().UnixNano())
 		s.Hash = s.PayloadHash()
-		v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKeyFromReader(rand.Reader)}
+		v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKey(rand.Reader)}
 		R := crypto.Commitment(v.random.Public().Key())
 		chain.CosiVerifiers[s.Hash] = v
 		agg.Commitments[len(chain.node.SortedConsensusNodes)] = &R
@@ -210,7 +210,7 @@ func (chain *Chain) cosiSendAnnouncement(m *CosiAction) error {
 	s.RoundNumber = cache.Number
 	s.References = cache.References
 	s.Hash = s.PayloadHash()
-	v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKeyFromReader(rand.Reader)}
+	v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKey(rand.Reader)}
 	R := crypto.Commitment(v.random.Public().Key())
 	chain.CosiVerifiers[s.Hash] = v
 	agg.Commitments[chain.node.ConsensusIndex] = &R
