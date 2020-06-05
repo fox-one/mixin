@@ -66,7 +66,7 @@ func TestKey(t *testing.T) {
 	for i := 0; i < len(seed); i++ {
 		seed[i] = byte(i + 1)
 	}
-	key := NewPrivateKeyFromSeedOrPanic(seed)
+	key := PrivateKeyFromSeedOrPanic(seed)
 	assert.Equal("000a3c4ec76cbae822affe760cb34a5bc0554fa3cae96171a5b13565a1072e6a93", key.Key().String())
 	assert.Equal("028dff4906efc7ad05d04d5d277626144dc3bbb1427b301d2b91e4d8e9847b7142", key.Public().Key().String())
 
@@ -90,5 +90,5 @@ func TestKey(t *testing.T) {
 func randomKey() *PrivateKey {
 	seed := make([]byte, 64)
 	rand.Read(seed)
-	return NewPrivateKeyFromSeedOrPanic(seed)
+	return PrivateKeyFromSeedOrPanic(seed)
 }

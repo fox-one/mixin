@@ -63,6 +63,7 @@ func (p PublicKey) ScalarHash(outputIndex uint64) crypto.PrivateKey {
 	data := append(p.X.Bytes(), big.NewInt(int64(outputIndex)).Bytes()...)
 	data = append(data, p.Y.Bytes()...)
 	h := crypto.NewHash(data)
+	h = crypto.NewHash(append(data, h[:]...))
 
 	priv := PrivateKey{}
 	priv.D = new(big.Int).SetBytes(h[:])
