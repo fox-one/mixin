@@ -2,7 +2,7 @@
 
 package storage
 
-import "github.com/MixinNetwork/mixin/crypto/sm"
+import "github.com/fox-one/mixin/crypto/sm"
 
 var configFilePath = "../config/config.example.sm.toml"
 

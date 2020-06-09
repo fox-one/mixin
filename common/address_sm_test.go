@@ -5,7 +5,7 @@ package common
 import (
 	"testing"
 
-	"github.com/MixinNetwork/mixin/crypto/sm"
+	"github.com/fox-one/mixin/crypto/sm"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 	"github.com/tjfoc/gmsm/sm2"
 )
 
