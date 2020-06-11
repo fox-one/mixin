@@ -123,7 +123,7 @@ func (chain *Chain) cosiSendAnnouncement(m *CosiAction) error {
 		agg.responsed[chain.node.IdForNetwork] = true
 		chain.CosiAggregators[s.Hash] = agg
 		for peerId := range chain.node.ConsensusNodes {
-			err := chain.node.Peer.SendSnapshotAnnouncementMessage(peerId, s, crypto.Key(R))
+			err := chain.node.Peer.SendSnapshotAnnouncementMessage(peerId, s, R)
 			if err != nil {
 				return err
 			}
@@ -217,7 +217,7 @@ func (chain *Chain) cosiSendAnnouncement(m *CosiAction) error {
 	agg.responsed[chain.node.IdForNetwork] = true
 	chain.CosiAggregators[s.Hash] = agg
 	for peerId := range chain.node.ConsensusNodes {
-		err := chain.node.Peer.SendSnapshotAnnouncementMessage(peerId, m.Snapshot, crypto.Key(R))
+		err := chain.node.Peer.SendSnapshotAnnouncementMessage(peerId, m.Snapshot, R)
 		if err != nil {
 			logger.Verbosef("CosiLoop cosiHandleAction cosiSendAnnouncement SendSnapshotAnnouncementMessage(%s, %s) ERROR %s\n", peerId, s.Hash, err.Error())
 		}

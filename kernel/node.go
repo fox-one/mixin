@@ -118,7 +118,7 @@ func SetupNode(custom *config.Custom, persistStore storage.Store, cacheStore *fa
 
 func (node *Node) LoadNodeConfig() {
 	var addr common.Address
-	addr.PrivateSpendKey = node.custom.Node.Signer.AsPrivateKeyOrPanic()
+	addr.PrivateSpendKey = node.custom.Node.Signer
 	addr.PublicSpendKey = addr.PrivateSpendKey.Public()
 	addr.PrivateViewKey = addr.PublicSpendKey.DeterministicHashDerive()
 	addr.PublicViewKey = addr.PrivateViewKey.Public()
