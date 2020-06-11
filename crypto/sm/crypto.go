@@ -19,7 +19,7 @@ func NewPrivateKeyFromSeed(seed []byte) (*PrivateKey, error) {
 	h := crypto.NewHash(seed)
 	var key [33]byte
 	copy(key[1:], h[:])
-	priv, err := sm.PrivateKeyFromBytes(key)
+	priv, err := sm.PrivateKeyFromBytes(&key)
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +38,8 @@ func PrivateKeyFromKey(k crypto.Key) (*PrivateKey, error) {
 	if k[0] != 0 {
 		return nil, fmt.Errorf("invalid key with prefix: %d", k[0])
 	}
-	priv, err := sm.PrivateKeyFromBytes([33]byte(k))
+	key := [33]byte(k)
+	priv, err := sm.PrivateKeyFromBytes(&key)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +51,8 @@ func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
 		return nil, fmt.Errorf("invalid key with prefix: %d", k[0])
 	}
 
-	pub, err := sm.PublicKeyFromBytes([33]byte(k))
+	key := [33]byte(k)
+	pub, err := sm.PublicKeyFromBytes(&key)
 	if err != nil {
 		return nil, err
 	}
