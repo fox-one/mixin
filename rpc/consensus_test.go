@@ -108,7 +108,9 @@ func TestAllTransactionsToSingleGenesisNode(t *testing.T) {
 	domainAddress := accounts[0].String()
 	deposits := make([]*common.VersionedTransaction, 0)
 	for i := 0; i < INPUTS; i++ {
-		raw := fmt.Sprintf(`{"version":1,"asset":"a99c2e0e2b1da4d648755ef19bd95139acbbe6564cfb06dec7cd34931ca72cdc","inputs":[{"deposit":{"chain":"8dd50817c082cdcdd6f167514928767a4b52426997bd6d4930eca101c5ff8a27","asset":"0xa974c709cfb4566686553a20790685a47aceaa33","transaction":"0xc7c1132b58e1f64c263957d7857fe5ec5294fce95d30dcd64efef71da1%06d","index":0,"amount":"%f"}}],"outputs":[{"type":0,"amount":"%f","script":"fffe01","accounts":["%s"]}]}`, i, genesisAmount, genesisAmount, domainAddress)
+		raw := fmt.Sprintf(`{"version":1,"asset":"%s","inputs":[{"deposit":{"chain":"%s","asset":"%s","transaction":"0xc7c1132b58e1f64c263957d7857fe5ec5294fce95d30dcd64efef71da1%06d","index":0,"amount":"%f"}}],"outputs":[{"type":0,"amount":"%f","script":"fffe01","accounts":["%s"]}]}`,
+			assetID, chainID, assetKey,
+			i, genesisAmount, genesisAmount, domainAddress)
 		tx, err := testSignTransaction(target.Host, accounts[0], raw)
 		assert.Nil(err)
 		assert.NotNil(tx)
@@ -130,7 +132,8 @@ func TestAllTransactionsToSingleGenesisNode(t *testing.T) {
 
 	utxos := make([]*common.VersionedTransaction, 0)
 	for _, d := range deposits {
-		raw := fmt.Sprintf(`{"version":1,"asset":"a99c2e0e2b1da4d648755ef19bd95139acbbe6564cfb06dec7cd34931ca72cdc","inputs":[{"hash":"%s","index":0}],"outputs":[{"type":0,"amount":"%f","script":"fffe01","accounts":["%s"]}]}`, d.PayloadHash().String(), genesisAmount, domainAddress)
+		raw := fmt.Sprintf(`{"version":1,"asset":"%s","inputs":[{"hash":"%s","index":0}],"outputs":[{"type":0,"amount":"%f","script":"fffe01","accounts":["%s"]}]}`,
+			assetID, d.PayloadHash().String(), genesisAmount, domainAddress)
 		mathRand.Seed(time.Now().UnixNano())
 		tx, err := testSignTransaction(nodes[0].Host, accounts[0], raw)
 		assert.Nil(err)

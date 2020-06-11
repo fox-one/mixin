@@ -33,7 +33,7 @@ func (p PublicKey) String() string {
 }
 
 func (p PublicKey) AddPublic(p1 crypto.PublicKey) crypto.PublicKey {
-	pub, err := p.PublicKey.AddPublic(*convertPublicKey(p1).PublicKey)
+	pub, err := p.PublicKey.AddPublic(convertPublicKey(p1).PublicKey)
 	if err != nil {
 		panic(err)
 	}
@@ -41,7 +41,7 @@ func (p PublicKey) AddPublic(p1 crypto.PublicKey) crypto.PublicKey {
 }
 
 func (p PublicKey) SubPublic(p1 crypto.PublicKey) crypto.PublicKey {
-	pub, err := p.PublicKey.SubPublic(*convertPublicKey(p1).PublicKey)
+	pub, err := p.PublicKey.SubPublic(convertPublicKey(p1).PublicKey)
 	if err != nil {
 		panic(err)
 	}

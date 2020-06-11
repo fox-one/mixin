@@ -5,6 +5,7 @@ package sm
 import (
 	"errors"
 	"fmt"
+	"math/big"
 
 	"github.com/fox-one/crypto/sm"
 	"github.com/fox-one/mixin/crypto"
@@ -12,38 +13,35 @@ import (
 
 type keyFactory struct{}
 
-func NewPrivateKeyFromSeed(seed []byte) (*PrivateKey, error) {
+func PrivateKeyFromSeed(seed []byte) (*PrivateKey, error) {
 	if len(seed) != 64 {
 		return nil, errors.New("invalid seed")
 	}
 	h := crypto.NewHash(seed)
-	var key [33]byte
-	copy(key[1:], h[:])
-	priv, err := sm.PrivateKeyFromBytes(&key)
-	if err != nil {
-		return nil, err
-	}
-	return &PrivateKey{PrivateKey: priv}, nil
+	return PrivateKeyFromInteger(new(big.Int).SetBytes(h[:]))
 }
 
-func NewPrivateKeyFromSeedOrPanic(seed []byte) *PrivateKey {
-	key, err := NewPrivateKeyFromSeed(seed)
+func PrivateKeyFromSeedOrPanic(seed []byte) *PrivateKey {
+	key, err := PrivateKeyFromSeed(seed)
 	if err != nil {
 		panic(err)
 	}
 	return key
 }
 
+func PrivateKeyFromInteger(d *big.Int) (*PrivateKey, error) {
+	p, err := sm.PrivateKeyFromInteger(d)
+	if err != nil {
+		return nil, err
+	}
+	return &PrivateKey{PrivateKey: p}, nil
+}
+
 func PrivateKeyFromKey(k crypto.Key) (*PrivateKey, error) {
 	if k[0] != 0 {
 		return nil, fmt.Errorf("invalid key with prefix: %d", k[0])
 	}
-	key := [33]byte(k)
-	priv, err := sm.PrivateKeyFromBytes(&key)
-	if err != nil {
-		return nil, err
-	}
-	return &PrivateKey{PrivateKey: priv}, nil
+	return PrivateKeyFromInteger(new(big.Int).SetBytes(k[1:]))
 }
 
 func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
@@ -59,12 +57,12 @@ func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
 	return &PublicKey{PublicKey: pub}, nil
 }
 
-func (f keyFactory) NewPrivateKeyFromSeed(seed []byte) (crypto.PrivateKey, error) {
-	return NewPrivateKeyFromSeed(seed)
+func (f keyFactory) PrivateKeyFromSeed(seed []byte) (crypto.PrivateKey, error) {
+	return PrivateKeyFromSeed(seed)
 }
 
-func (f keyFactory) NewPrivateKeyFromSeedOrPanic(seed []byte) crypto.PrivateKey {
-	return NewPrivateKeyFromSeedOrPanic(seed)
+func (f keyFactory) PrivateKeyFromSeedOrPanic(seed []byte) crypto.PrivateKey {
+	return PrivateKeyFromSeedOrPanic(seed)
 }
 
 func (f keyFactory) PrivateKeyFromKey(k crypto.Key) (crypto.PrivateKey, error) {

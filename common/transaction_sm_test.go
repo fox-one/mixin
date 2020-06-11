@@ -75,7 +75,7 @@ func TestTransaction(t *testing.T) {
 	assert.Equal("f5d928567afbc7594cd441e31af2a2def794c74247f97602970c5918a216e578", ver.PayloadHash().String())
 	ver.AddInput(genesisHash, 1)
 	assert.Equal("5fe7efbb559ba91c6bb0093bd606b2602458f648d14f689974637f9d9d25602c", ver.PayloadHash().String())
-	ver.Outputs = append(ver.Outputs, &Output{Type: OutputTypeScript, Amount: NewInteger(10000), Script: script, Mask: crypto.NewPrivateKeyFromSeed(bytes.Repeat([]byte{1}, 64)).Key()})
+	ver.Outputs = append(ver.Outputs, &Output{Type: OutputTypeScript, Amount: NewInteger(10000), Script: script, Mask: crypto.PrivateKeyFromSeed(bytes.Repeat([]byte{1}, 64)).Key()})
 	assert.Equal("7c9d1c4e98e30ae5aa599686c1fbeb7bcccf1991bb29010112332e68d304f0e1", ver.PayloadHash().String())
 	ver.AddScriptOutput(accounts, script, NewInteger(10000), bytes.Repeat([]byte{1}, 64))
 	assert.Equal("a9379c1dbd902b572d630d59bb5185ac836e3b05399ef3d492eb7e0ec92b4d3a", ver.PayloadHash().String())
@@ -143,7 +143,7 @@ type storeImpl struct {
 }
 
 func (store storeImpl) ReadUTXO(hash crypto.Hash, index int) (*UTXOWithLock, error) {
-	genesisMaskr := crypto.NewPrivateKeyFromSeed(store.seed)
+	genesisMaskr := crypto.PrivateKeyFromSeed(store.seed)
 	genesisMaskR := genesisMaskr.Public()
 
 	in := Input{

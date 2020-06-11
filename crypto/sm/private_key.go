@@ -45,7 +45,7 @@ func (p *PrivateKey) Public() crypto.PublicKey {
 }
 
 func (p PrivateKey) AddPrivate(p1 crypto.PrivateKey) crypto.PrivateKey {
-	priv, err := p.PrivateKey.AddPrivate(*convertPrivateKey(p1).PrivateKey)
+	priv, err := p.PrivateKey.AddPrivate(convertPrivateKey(p1).PrivateKey)
 	if err != nil {
 		panic(err)
 	}
@@ -53,7 +53,7 @@ func (p PrivateKey) AddPrivate(p1 crypto.PrivateKey) crypto.PrivateKey {
 }
 
 func (p PrivateKey) ScalarMult(pub crypto.PublicKey) crypto.PublicKey {
-	s, err := p.PrivateKey.ScalarMult(*convertPublicKey(pub).PublicKey)
+	s, err := p.PrivateKey.ScalarMult(convertPublicKey(pub).PublicKey)
 	if err != nil {
 		panic(err)
 	}

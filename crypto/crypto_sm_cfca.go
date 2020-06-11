@@ -9,7 +9,7 @@ import (
 )
 
 func init() {
-	if result := cfca.Load("/license/cfca.license"); result != 0 {
+	if result := cfca.Load(); result != 0 {
 		panic(fmt.Errorf("loading cfca failed, result: %d", result))
 	}
 }
