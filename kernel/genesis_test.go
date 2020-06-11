@@ -1,3 +1,5 @@
+// +build ed25519 !custom_alg
+
 package kernel
 
 import (

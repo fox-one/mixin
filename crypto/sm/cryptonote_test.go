@@ -1,3 +1,5 @@
+// +build sm,custom_alg
+
 package sm
 
 import (

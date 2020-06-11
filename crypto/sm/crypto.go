@@ -1,12 +1,13 @@
+// +build sm,custom_alg
+
 package sm
 
 import (
 	"errors"
 	"fmt"
-	"math/big"
 
+	"github.com/fox-one/crypto/sm"
 	"github.com/fox-one/mixin/crypto"
-	"github.com/tjfoc/gmsm/sm3"
 )
 
 type keyFactory struct{}
@@ -16,11 +17,13 @@ func NewPrivateKeyFromSeed(seed []byte) (*PrivateKey, error) {
 		return nil, errors.New("invalid seed")
 	}
 	h := crypto.NewHash(seed)
-
-	var priv PrivateKey
-	priv.D = new(big.Int).SetBytes(h[:])
-	priv.D = priv.D.Mod(priv.D, N)
-	return &priv, nil
+	var key [33]byte
+	copy(key[1:], h[:])
+	priv, err := sm.PrivateKeyFromBytes(key)
+	if err != nil {
+		return nil, err
+	}
+	return &PrivateKey{PrivateKey: priv}, nil
 }
 
 func NewPrivateKeyFromSeedOrPanic(seed []byte) *PrivateKey {
@@ -35,10 +38,11 @@ func PrivateKeyFromKey(k crypto.Key) (*PrivateKey, error) {
 	if k[0] != 0 {
 		return nil, fmt.Errorf("invalid key with prefix: %d", k[0])
 	}
-	var priv PrivateKey
-	priv.D = new(big.Int).SetBytes(k[1:])
-	priv.D = priv.D.Mod(priv.D, N)
-	return &priv, nil
+	priv, err := sm.PrivateKeyFromBytes([33]byte(k))
+	if err != nil {
+		return nil, err
+	}
+	return &PrivateKey{PrivateKey: priv}, nil
 }
 
 func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
@@ -46,27 +50,11 @@ func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
 		return nil, fmt.Errorf("invalid key with prefix: %d", k[0])
 	}
 
-	var pub PublicKey
-	pub.X = new(big.Int).SetBytes(k[1:])
-	pub.X = pub.X.Mod(pub.X, P)
-
-	xCubed := new(big.Int).Exp(pub.X, three, P)
-	threeX := new(big.Int).Mul(pub.X, three)
-	threeX.Mod(threeX, P)
-	ySqured := new(big.Int).Sub(xCubed, threeX)
-	ySqured.Add(ySqured, B)
-	ySqured.Mod(ySqured, P)
-	Y := new(big.Int).ModSqrt(ySqured, P)
-	if Y == nil {
-		return nil, fmt.Errorf("invalid key value: %s", k)
+	pub, err := sm.PublicKeyFromBytes([33]byte(k))
+	if err != nil {
+		return nil, err
 	}
-
-	if k[0] != byte(Y.Bit(0)+2) {
-		Y = Y.Neg(Y)
-		Y = Y.Mod(Y, P)
-	}
-	pub.Y = Y
-	return &pub, nil
+	return &PublicKey{PublicKey: pub}, nil
 }
 
 func (f keyFactory) NewPrivateKeyFromSeed(seed []byte) (crypto.PrivateKey, error) {
@@ -88,8 +76,6 @@ func (f keyFactory) PublicKeyFromKey(k crypto.Key) (crypto.PublicKey, error) {
 func Load() {
 	crypto.SetKeyFactory(keyFactory{})
 	crypto.SetHashFunc(func(data []byte) [32]byte {
-		var h crypto.Hash
-		copy(h[:], sm3.Sm3Sum(data))
-		return h
+		return sm.Sm3Sum(data)
 	})
 }

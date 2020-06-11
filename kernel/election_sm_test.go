@@ -1,4 +1,4 @@
-// +build sm custom_alg
+// +build sm,custom_alg
 
 package kernel
 
@@ -63,7 +63,7 @@ func TestNodeRemovePossibility(t *testing.T) {
 	tx, err := node.buildRemoveTransaction(candi)
 	assert.Nil(err)
 	assert.NotNil(tx)
-	assert.Equal("f2d395310f0c0a55580a2cea219a5c329442840e4db65317b39243187ed697f9", tx.PayloadHash().String())
+	assert.Equal("c5d3f97dcd275e937fb440dfa1ea416f23faec92e336af579d0434659d828932", tx.PayloadHash().String())
 	assert.Equal(common.XINAssetId, tx.Asset)
 	assert.Equal(pledgeAmount(0), tx.Outputs[0].Amount)
 	assert.Equal("fffe01", tx.Outputs[0].Script.String())
@@ -88,7 +88,7 @@ func TestNodeRemovePossibility(t *testing.T) {
 }
 
 var configData = []byte(`[node]
-signer-key = "00068fd928a48d08d930c50c7d762403ce4380cbb608e5cf95fc864efcd5b3b209"
+signer-key = "00078fd928a48d08d930c50c7d762403ce4380cbb608e5cf95fc864efcd5b3b209"
 consensus-only = true
 memory-cache-size = 16
 cache-ttl = 7200

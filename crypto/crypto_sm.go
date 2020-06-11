@@ -1,10 +1,8 @@
-// +build sm custom_alg
+// +build sm,custom_alg
 
 package crypto
 
-import (
-	"github.com/tjfoc/gmsm/sm3"
-)
+import "github.com/fox-one/crypto/sm"
 
 const (
 	KeySize      = 33
@@ -17,8 +15,6 @@ type Commitment Key
 
 func init() {
 	hashFunc = func(data []byte) [32]byte {
-		var h Hash
-		copy(h[:], sm3.Sm3Sum(data))
-		return h
+		return sm.Sm3Sum(data)
 	}
 }

@@ -1,4 +1,4 @@
-// +build sm custom_alg
+// +build sm,custom_alg
 
 package config
 
@@ -19,7 +19,7 @@ func TestConfig(t *testing.T) {
 	err := Initialize("./config.example.sm.toml")
 	assert.Nil(err)
 
-	assert.Equal("0056a7904a2dfd71c397bb48584033d8cb6ddcde9b46b7d91f07d2ede061723a0b", Custom.Node.Signer.String())
+	assert.Equal("00068fd928a48d08d930c50c7d762403ce4380cbb608e5cf95fc864efcd5b3b209", Custom.Node.Signer.String())
 	assert.Equal(false, Custom.Node.ConsensusOnly)
 	assert.Equal(700, Custom.Node.KernelOprationPeriod)
 	assert.Equal(16384, Custom.Node.MemoryCacheSize)

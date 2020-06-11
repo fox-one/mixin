@@ -12,6 +12,7 @@ require (
 	github.com/dimfeld/httptreemux v5.0.1+incompatible
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/ethereum/go-ethereum v1.9.19
+	github.com/fox-one/crypto v0.0.0-20200529044323-149411e7fda1
 	github.com/frankban/quicktest v1.10.0 // indirect
 	github.com/gobuffalo/packr v1.30.1
 	github.com/gofrs/uuid v3.3.0+incompatible
@@ -22,7 +23,7 @@ require (
 	github.com/pelletier/go-toml v1.8.0
 	github.com/pierrec/lz4 v2.5.2+incompatible // indirect
 	github.com/shopspring/decimal v1.2.0
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.5.1
 	github.com/ulikunitz/xz v0.5.8 // indirect
 	github.com/unrolled/render v1.0.3
 	github.com/urfave/cli/v2 v2.2.0

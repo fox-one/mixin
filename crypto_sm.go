@@ -1,4 +1,4 @@
-// +build sm custom_alg
+// +build sm,custom_alg
 
 package main
 
