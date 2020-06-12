@@ -30,6 +30,7 @@ func NewRouter(custom *config.Custom, store storage.Store, node *kernel.Node) *h
 	router := httptreemux.New()
 	impl := &R{Store: store, Node: node, custom: custom}
 	router.POST("/", impl.handle)
+	router.GET("/hc", impl.healthCheck)
 	registerHandlers(router)
 	return router
 }
@@ -73,6 +74,21 @@ func (r *Render) RenderError(err error) {
 		body["runtime"] = fmt.Sprint(time.Now().Sub(r.start).Seconds())
 	}
 	r.impl.JSON(r.w, http.StatusOK, body)
+}
+
+func (impl *R) healthCheck(w http.ResponseWriter, r *http.Request, _ map[string]string) {
+	node := impl.Node
+	body := map[string]interface{}{
+		"network":   node.NetworkId(),
+		"node":      node.IdForNetwork,
+		"version":   config.BuildVersion,
+		"uptime":    node.Uptime().String(),
+		"epoch":     time.Unix(0, int64(node.Epoch)),
+		"timestamp": time.Unix(0, int64(node.Graph.GraphTimestamp)),
+		"topology":  node.TopologicalOrder(),
+	}
+	renderer := &Render{w: w, impl: render.New()}
+	renderer.RenderData(body)
 }
 
 func (impl *R) handle(w http.ResponseWriter, r *http.Request, _ map[string]string) {

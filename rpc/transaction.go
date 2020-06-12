@@ -165,18 +165,17 @@ func snapshotsToMap(snapshots []*common.SnapshotWithTopologicalOrder, transactio
 
 func snapshotToMap(s *common.SnapshotWithTopologicalOrder, tx *common.VersionedTransaction, sig bool) map[string]interface{} {
 	item := map[string]interface{}{
-		"version":    s.Version,
-		"node":       s.NodeId,
-		"references": s.References,
-		"round":      s.RoundNumber,
-		"timestamp":  s.Timestamp,
-		"hash":       s.Hash,
-		"topology":   s.TopologicalOrder,
+		"version":     s.Version,
+		"node":        s.NodeId,
+		"references":  s.References,
+		"round":       s.RoundNumber,
+		"timestamp":   s.Timestamp,
+		"hash":        s.Hash,
+		"topology":    s.TopologicalOrder,
+		"transaction": s.Transaction,
 	}
 	if tx != nil {
-		item["transaction"] = transactionToMap(tx)
-	} else {
-		item["transaction"] = s.Transaction
+		item["transaction_body"] = transactionToMap(tx)
 	}
 	if sig && s.Version == 0 {
 		item["signatures"] = s.Signatures
