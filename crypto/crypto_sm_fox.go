@@ -1,4 +1,4 @@
-// +build sm,custom_alg,!cfca
+// +build !cfca
 
 package crypto
 
