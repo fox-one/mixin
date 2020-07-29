@@ -11,8 +11,8 @@ require (
 	github.com/dgraph-io/badger/v2 v2.2007.1
 	github.com/dimfeld/httptreemux v5.0.1+incompatible
 	github.com/dsnet/compress v0.0.1 // indirect
-	github.com/ethereum/go-ethereum v1.9.17
-	github.com/fox-one/crypto v0.0.8
+	github.com/ethereum/go-ethereum v1.9.18
+	github.com/fox-one/crypto v0.1.3
 	github.com/frankban/quicktest v1.10.0 // indirect
 	github.com/gobuffalo/packr v1.30.1
 	github.com/gofrs/uuid v3.3.0+incompatible

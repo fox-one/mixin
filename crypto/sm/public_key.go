@@ -3,13 +3,13 @@
 package sm
 
 import (
+	"unsafe"
+
 	"github.com/fox-one/crypto/sm"
 	"github.com/fox-one/mixin/crypto"
 )
 
-type PublicKey struct {
-	*sm.PublicKey
-}
+type PublicKey sm.PublicKey
 
 var (
 	emptyChallenge [32]byte
@@ -24,8 +24,16 @@ func convertPublicKey(p crypto.PublicKey) *PublicKey {
 	}
 }
 
+func toSmPublicKey(p *PublicKey) *sm.PublicKey {
+	return (*sm.PublicKey)(unsafe.Pointer(p))
+}
+
+func fromSmPublicKey(p *sm.PublicKey) *PublicKey {
+	return (*PublicKey)(unsafe.Pointer(p))
+}
+
 func (p *PublicKey) Key() crypto.Key {
-	return crypto.Key(p.PublicKey.Bytes())
+	return crypto.Key(toSmPublicKey(p).Bytes())
 }
 
 func (p PublicKey) String() string {
@@ -33,27 +41,27 @@ func (p PublicKey) String() string {
 }
 
 func (p PublicKey) AddPublic(p1 crypto.PublicKey) crypto.PublicKey {
-	pub, err := p.PublicKey.AddPublic(convertPublicKey(p1).PublicKey)
+	pub, err := sm.AddPublic(toSmPublicKey(&p), toSmPublicKey(convertPublicKey(p1)))
 	if err != nil {
 		panic(err)
 	}
-	return &PublicKey{PublicKey: pub}
+	return fromSmPublicKey(pub)
 }
 
 func (p PublicKey) SubPublic(p1 crypto.PublicKey) crypto.PublicKey {
-	pub, err := p.PublicKey.SubPublic(convertPublicKey(p1).PublicKey)
+	pub, err := sm.SubPublic(toSmPublicKey(&p), toSmPublicKey(convertPublicKey(p1)))
 	if err != nil {
 		panic(err)
 	}
-	return &PublicKey{PublicKey: pub}
+	return fromSmPublicKey(pub)
 }
 
 func (p PublicKey) ScalarHash(outputIndex uint64) crypto.PrivateKey {
-	return &PrivateKey{PrivateKey: p.PublicKey.ScalarHash(outputIndex)}
+	return fromSmPrivateKey(sm.ScalarHash(toSmPublicKey(&p), outputIndex))
 }
 
 func (p PublicKey) DeterministicHashDerive() crypto.PrivateKey {
-	return &PrivateKey{PrivateKey: p.PublicKey.DeterministicHashDerive()}
+	return fromSmPrivateKey(sm.DeterministicHashDerive(toSmPublicKey(&p)))
 }
 
 func (p PublicKey) Challenge(R crypto.PublicKey, message []byte) [32]byte {
@@ -65,5 +73,5 @@ func (p PublicKey) VerifyWithChallenge(message []byte, sig *crypto.Signature, hR
 }
 
 func (p PublicKey) Verify(message []byte, sig *crypto.Signature) bool {
-	return p.PublicKey.Verify(message, [64]byte(*sig))
+	return sm.Verify(toSmPublicKey(&p), message, [64]byte(*sig))
 }

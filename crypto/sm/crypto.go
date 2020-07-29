@@ -34,7 +34,7 @@ func PrivateKeyFromInteger(d *big.Int) (*PrivateKey, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &PrivateKey{PrivateKey: p}, nil
+	return fromSmPrivateKey(p), nil
 }
 
 func PrivateKeyFromKey(k crypto.Key) (*PrivateKey, error) {
@@ -54,7 +54,7 @@ func PublicKeyFromKey(k crypto.Key) (*PublicKey, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &PublicKey{PublicKey: pub}, nil
+	return fromSmPublicKey(pub), nil
 }
 
 func (f keyFactory) PrivateKeyFromSeed(seed []byte) (crypto.PrivateKey, error) {
