@@ -84,7 +84,7 @@ func (impl *R) healthCheck(w http.ResponseWriter, r *http.Request, _ map[string]
 		"version":   config.BuildVersion,
 		"uptime":    node.Uptime().String(),
 		"epoch":     time.Unix(0, int64(node.Epoch)),
-		"timestamp": time.Unix(0, int64(node.Graph.GraphTimestamp)),
+		"timestamp": time.Unix(0, int64(node.GraphTimestamp)),
 		"topology":  node.TopologicalOrder(),
 	}
 	renderer := &Render{w: w, impl: render.New()}
