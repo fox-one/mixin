@@ -777,46 +777,7 @@ func (node *Node) CosiAggregateSelfResponses(peerId crypto.Hash, snap crypto.Has
 	if node.ConsensusNodes[peerId] == nil {
 		return nil
 	}
-
 	chain := node.GetOrCreateChain(node.IdForNetwork)
-	agg := chain.CosiAggregators[snap]
-	if agg == nil {
-		return nil
-	}
-
-	s := agg.Snapshot
-	tx, finalized, err := node.checkCacheSnapshotTransaction(s)
-	if err != nil || finalized || tx == nil {
-		return nil
-	}
-
-	index := -1
-	for i, id := range node.SortedConsensusNodes {
-		if id == peerId {
-			index = i
-			break
-		}
-	}
-	if index < 0 {
-		return nil
-	}
-	publics := node.ConsensusKeys(s.Timestamp)
-	if node.checkInitialAcceptSnapshotWeak(s) {
-		publics = append(publics, node.ConsensusPledging.Signer.PublicSpendKey)
-	}
-	challenge, err := s.Signature.Challenge(publics, snap[:])
-	if err != nil {
-		return nil
-	}
-
-	commitment, ok := agg.Commitments[index]
-	if !ok {
-		return nil
-	}
-	sig := s.Signature.LoadResponseSignature(commitment, response)
-	if !publics[index].VerifyWithChallenge(snap[:], sig, challenge) {
-		return nil
-	}
 
 	m := &CosiAction{
 		PeerId:       peerId,
