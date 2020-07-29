@@ -256,7 +256,7 @@ func (chain *Chain) cosiHandleAnnouncement(m *CosiAction) error {
 		return nil
 	}
 
-	v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKeyFromReader(rand.Reader)}
+	v := &CosiVerifier{Snapshot: s, random: crypto.NewPrivateKey(rand.Reader)}
 	if chain.node.checkInitialAcceptSnapshotWeak(s) {
 		chain.CosiVerifiers[s.Hash] = v
 		err := chain.node.Peer.SendSnapshotCommitmentMessage(s.NodeId, s.Hash, v.random.Public().Key(), tx == nil)
