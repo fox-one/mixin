@@ -22,7 +22,13 @@ func getConsensusKeys(node *kernel.Node, params []interface{}) ([]*crypto.Key, e
 	if err != nil {
 		return nil, err
 	}
-	return node.ConsensusKeys(timestamp), nil
+	pubKeys := node.ConsensusKeys(timestamp)
+	keys := make([]*crypto.Key, len(pubKeys))
+	for idx, P := range pubKeys {
+		k := P.Key()
+		keys[idx] = &k
+	}
+	return keys, nil
 }
 
 func getInfo(store storage.Store, node *kernel.Node) (map[string]interface{}, error) {
