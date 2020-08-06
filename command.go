@@ -143,8 +143,7 @@ func validateGraphEntries(c *cli.Context) error {
 
 	f, err := ioutil.ReadFile(c.String("dir") + "/genesis.json")
 	if err != nil {
-		gns, err := readGenesis("./genesis.json")
-		if err != nil {
+		if f, err = ioutil.ReadFile("./genesis.json"); err != nil {
 			return err
 		}
 	}

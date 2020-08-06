@@ -12,8 +12,7 @@ import (
 func (node *Node) Import(configDir string, source storage.Store) error {
 	gns, err := readGenesis(configDir + "/genesis.json")
 	if err != nil {
-		gns, err := readGenesis("./genesis.json")
-		if err != nil {
+		if gns, err = readGenesis("./genesis.json"); err != nil {
 			return err
 		}
 	}

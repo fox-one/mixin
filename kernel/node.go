@@ -243,8 +243,7 @@ func (node *Node) PingNeighborsFromConfig() error {
 
 	f, err := ioutil.ReadFile(node.configDir + "/nodes.json")
 	if err != nil {
-		f, err := ioutil.ReadFile("./nodes.json")
-		if err != nil {
+		if f, err = ioutil.ReadFile("./nodes.json"); err != nil {
 			return err
 		}
 	}

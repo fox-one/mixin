@@ -31,8 +31,7 @@ type Genesis struct {
 func (node *Node) LoadGenesis(configDir string) error {
 	gns, err := readGenesis(configDir + "/genesis.json")
 	if err != nil {
-		gns, err := readGenesis("./genesis.json")
-		if err != nil {
+		if gns, err = readGenesis("./genesis.json"); err != nil {
 			return err
 		}
 	}
