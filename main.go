@@ -19,7 +19,8 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "mixin"
+	app.Name = "hengxin"
+	app.HelpName = "hxkernel"
 	app.Usage = "A free, lightning fast and decentralized network for transferring digital assets."
 	app.Version = config.BuildVersion
 	app.Flags = []cli.Flag{
@@ -45,7 +46,7 @@ func main() {
 		{
 			Name:    "kernel",
 			Aliases: []string{"k"},
-			Usage:   "Start the Mixin Kernel daemon",
+			Usage:   "Start the Hengxin Kernel daemon",
 			Action:  kernelCmd,
 			Flags: []cli.Flag{
 				&cli.StringFlag{
@@ -115,7 +116,7 @@ func main() {
 		},
 		{
 			Name:   "createaddress",
-			Usage:  "Create a new Mixin address",
+			Usage:  "Create a new Hengxin address",
 			Action: createAdressCmd,
 			Flags: []cli.Flag{
 				&cli.BoolFlag{
@@ -140,7 +141,7 @@ func main() {
 				&cli.StringFlag{
 					Name:    "address",
 					Aliases: []string{"a"},
-					Usage:   "the Mixin Kernel address",
+					Usage:   "the Hengxin Kernel address",
 				},
 			},
 		},
