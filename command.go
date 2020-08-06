@@ -143,7 +143,10 @@ func validateGraphEntries(c *cli.Context) error {
 
 	f, err := ioutil.ReadFile(c.String("dir") + "/genesis.json")
 	if err != nil {
-		return err
+		gns, err := readGenesis("./genesis.json")
+		if err != nil {
+			return err
+		}
 	}
 	var gns kernel.Genesis
 	err = json.Unmarshal(f, &gns)

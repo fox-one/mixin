@@ -243,7 +243,10 @@ func (node *Node) PingNeighborsFromConfig() error {
 
 	f, err := ioutil.ReadFile(node.configDir + "/nodes.json")
 	if err != nil {
-		return err
+		f, err := ioutil.ReadFile("./nodes.json")
+		if err != nil {
+			return err
+		}
 	}
 	var inputs []struct {
 		Host string `json:"host"`

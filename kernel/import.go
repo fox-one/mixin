@@ -12,7 +12,10 @@ import (
 func (node *Node) Import(configDir string, source storage.Store) error {
 	gns, err := readGenesis(configDir + "/genesis.json")
 	if err != nil {
-		return err
+		gns, err := readGenesis("./genesis.json")
+		if err != nil {
+			return err
+		}
 	}
 	_, gss, _, err := buildGenesisSnapshots(node.networkId, node.Epoch, gns)
 	if err != nil {
