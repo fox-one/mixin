@@ -33,6 +33,7 @@ func main() {
 		&cli.StringFlag{
 			Name:    "dir",
 			Aliases: []string{"d"},
+			Value:   "/hengxin-kernel",
 			Usage:   "the data directory",
 		},
 		&cli.BoolFlag{
@@ -52,6 +53,7 @@ func main() {
 				&cli.StringFlag{
 					Name:    "dir",
 					Aliases: []string{"d"},
+					Value:   "/hengxin-kernel",
 					Usage:   "the data directory",
 				},
 				&cli.IntFlag{
@@ -85,6 +87,7 @@ func main() {
 				&cli.StringFlag{
 					Name:    "dir",
 					Aliases: []string{"d"},
+					Value:   "/hengxin-kernel",
 					Usage:   "the kernel data directory",
 				},
 				&cli.StringFlag{
