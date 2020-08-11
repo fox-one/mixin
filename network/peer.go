@@ -205,9 +205,10 @@ func (me *Peer) ListenNeighbors() error {
 			continue
 		}
 		go func(c Client) {
+			beg := time.Now()
 			err := me.acceptNeighborConnection(c)
 			if err != nil {
-				logger.Debugf("accept neighbor %s error %s\n", c.RemoteAddr().String(), err.Error())
+				logger.Debugf("accept neighbor %s cost time %v error %s\n", c.RemoteAddr().String(), time.Since(beg), err.Error())
 			}
 		}(c)
 	}
@@ -221,9 +222,10 @@ func (me *Peer) openPeerStreamLoop(p *Peer) {
 
 	var resend *ChanMsg
 	for !me.closing && !p.closing {
+		beg := time.Now()
 		msg, err := me.openPeerStream(p, resend)
 		if err != nil {
-			logger.Verbosef("neighbor open stream %s error %s\n", p.Address, err.Error())
+			logger.Verbosef("neighbor open stream %s cost time %v error %s\n", p.Address, time.Since(beg), err.Error())
 		}
 		resend = msg
 		time.Sleep(1 * time.Second)

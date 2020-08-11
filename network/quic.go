@@ -58,7 +58,7 @@ func NewQuicClient(addr string) (*QuicTransport, error) {
 		addr: addr,
 		tls: &tls.Config{
 			InsecureSkipVerify: true,
-			NextProtos:         []string{"mixin-quic-peer"},
+			NextProtos:         []string{"hx-quic-peer"},
 		},
 	}, nil
 }
@@ -261,6 +261,6 @@ func generateTLSConfig() *tls.Config {
 	}
 	return &tls.Config{
 		Certificates: []tls.Certificate{tlsCert},
-		NextProtos:   []string{"mixin-quic-peer"},
+		NextProtos:   []string{"hx-quic-peer"},
 	}
 }
