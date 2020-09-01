@@ -4,8 +4,8 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/crypto/ed25519/edwards25519"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/crypto/ed25519/edwards25519"
 )
 
 func (f keyFactory) CosiAggregateCommitments(cosi *crypto.CosiSignature, commitments map[int]*crypto.Commitment) error {

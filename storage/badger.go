@@ -3,10 +3,10 @@ package storage
 import (
 	"time"
 
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/logger"
 	"github.com/dgraph-io/badger/v2"
 	"github.com/dgraph-io/badger/v2/options"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/logger"
 )
 
 type BadgerStore struct {

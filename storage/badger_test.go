@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/MixinNetwork/mixin/config"
+	"github.com/fox-one/mixin/config"
 	"github.com/stretchr/testify/assert"
 )
 

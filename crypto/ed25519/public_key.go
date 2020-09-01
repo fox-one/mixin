@@ -5,8 +5,8 @@ import (
 	"crypto/sha512"
 	"encoding/binary"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/crypto/ed25519/edwards25519"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/crypto/ed25519/edwards25519"
 )
 
 func (k Key) CheckKey() bool {

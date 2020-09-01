@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
 )
 
 const (

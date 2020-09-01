@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/logger"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/logger"
 )
 
 func (node *Node) checkTxInStorage(id crypto.Hash) (bool, error) {

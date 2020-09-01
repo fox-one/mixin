@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/logger"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/logger"
+	"github.com/fox-one/mixin/storage"
 )
 
 func (node *Node) Import(configDir string, source storage.Store) error {

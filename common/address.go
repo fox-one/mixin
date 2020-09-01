@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/MixinNetwork/mixin/crypto"
 	"github.com/btcsuite/btcutil/base58"
+	"github.com/fox-one/mixin/crypto"
 )
 
 const MainNetworkId = "XIN"

@@ -4,10 +4,10 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
 	"github.com/dgraph-io/badger/v2"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
 )
 
 func (s *BadgerStore) ReadLink(from, to crypto.Hash) (uint64, error) {

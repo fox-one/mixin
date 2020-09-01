@@ -1,8 +1,8 @@
 package rpc
 
 import (
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/storage"
 )
 
 func listAllNodes(store storage.Store, node *kernel.Node) ([]map[string]interface{}, error) {

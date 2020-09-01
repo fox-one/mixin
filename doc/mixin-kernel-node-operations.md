@@ -8,7 +8,7 @@ To read this article, you need to have a good understanding of the transaction d
 
 To boot a fresh Mixin Kernel Full Node, you need to generate your keys, send the pledge transaction and run the kernel daemon.
 
-1. Get the latest release from https://github.com/MixinNetwork/mixin/releases and extract files `mixin`, `genesis.json`, `nodes.json` and `config.example.toml`.
+1. Get the latest release from https://github.com/fox-one/mixin/releases and extract files `mixin`, `genesis.json`, `nodes.json` and `config.example.toml`.
 
 2. Add `mixin` to your `$PATH`, then create a directory `~/mixin` with `genesis.json` and `nodes.json` in it.
 

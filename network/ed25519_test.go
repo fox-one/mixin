@@ -2,7 +2,7 @@
 
 package network
 
-import "github.com/MixinNetwork/mixin/crypto/ed25519"
+import "github.com/fox-one/mixin/crypto/ed25519"
 
 func init() {
 	ed25519.Load()

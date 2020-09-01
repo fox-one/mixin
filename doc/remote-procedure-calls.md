@@ -92,7 +92,7 @@ mixin -n 127.0.0.1:8239 signrawtransaction \
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### sendrawtransaction
 
@@ -125,7 +125,7 @@ mixin -n 127.0.0.1:8239 sendrawtransaction \
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### decoderawtransaction
 
@@ -206,7 +206,7 @@ mixin -n 127.0.0.1:8239 decoderawtransaction \
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### buildnodecanceltransaction
 
@@ -240,7 +240,7 @@ mixin -n 127.0.0.1:8239 \
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### decodenodepledgetransaction
 
@@ -265,7 +265,7 @@ mixin -n 127.0.0.1:8239 --raw RAW
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### getroundlink
 
@@ -496,7 +496,7 @@ mixin -n 127.0.0.1:8239 listsnapshots --since 0 --count 1 --sig --tx
 
 *See also*
 
-* [Mixin Kernel Snapshots](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-snapshots.md)
+* [Mixin Kernel Snapshots](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-snapshots.md)
 
 #### getsnapshot
 
@@ -568,7 +568,7 @@ mixin -n 127.0.0.1:8239 getsnapshot \
 
 *See also*
 
-* [Mixin Kernel Snapshots](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-snapshots.md)
+* [Mixin Kernel Snapshots](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-snapshots.md)
 
 #### gettransaction
 
@@ -645,7 +645,7 @@ mixin -n 127.0.0.1:8239 gettransaction \
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### getcachetransaction
 
@@ -670,7 +670,7 @@ mixin -n 127.0.0.1:8239 getcachetransaction --hash HASH
 
 *See also*
 
-* [Mixin Kernel Transactions](https://github.com/MixinNetwork/mixin/blob/master/doc/mixin-kernel-transactions.md)
+* [Mixin Kernel Transactions](https://github.com/fox-one/mixin/blob/master/doc/mixin-kernel-transactions.md)
 
 #### getutxo
 

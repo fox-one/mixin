@@ -5,7 +5,7 @@ package config
 import (
 	"testing"
 
-	"github.com/MixinNetwork/mixin/crypto/ed25519"
+	"github.com/fox-one/mixin/crypto/ed25519"
 	"github.com/stretchr/testify/assert"
 )
 

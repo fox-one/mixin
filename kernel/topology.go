@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/storage"
 )
 
 type TopologicalSequence struct {

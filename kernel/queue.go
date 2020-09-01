@@ -1,7 +1,7 @@
 package kernel
 
 import (
-	"github.com/MixinNetwork/mixin/common"
+	"github.com/fox-one/mixin/common"
 )
 
 func (node *Node) QueueTransaction(tx *common.VersionedTransaction) (string, error) {

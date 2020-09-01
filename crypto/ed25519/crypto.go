@@ -3,8 +3,8 @@ package ed25519
 import (
 	"errors"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/crypto/ed25519/edwards25519"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/crypto/ed25519/edwards25519"
 	"golang.org/x/crypto/sha3"
 )
 

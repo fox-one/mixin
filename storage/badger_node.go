@@ -6,10 +6,10 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/logger"
 	"github.com/dgraph-io/badger/v2"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/logger"
 )
 
 const (

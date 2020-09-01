@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/storage"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/storage"
 )
 
 func getConsensusKeys(node *kernel.Node, params []interface{}) ([]*crypto.Key, error) {

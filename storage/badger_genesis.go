@@ -3,8 +3,8 @@ package storage
 import (
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/common"
 	"github.com/dgraph-io/badger/v2"
+	"github.com/fox-one/mixin/common"
 )
 
 func (s *BadgerStore) LoadGenesis(rounds []*common.Round, snapshots []*common.SnapshotWithTopologicalOrder, transactions []*common.VersionedTransaction) error {

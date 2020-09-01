@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/MixinNetwork/mixin/config"
+	"github.com/fox-one/mixin/config"
 )
 
 // FIXME GLOBAL VARAIBLES

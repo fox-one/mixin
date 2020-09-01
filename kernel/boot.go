@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/MixinNetwork/mixin/kernel/internal/clock"
+	"github.com/fox-one/mixin/kernel/internal/clock"
 )
 
 func (node *Node) Loop() error {

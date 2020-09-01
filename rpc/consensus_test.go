@@ -16,14 +16,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/domains/ethereum"
-	"github.com/MixinNetwork/mixin/kernel"
-	"github.com/MixinNetwork/mixin/logger"
-	"github.com/MixinNetwork/mixin/storage"
 	"github.com/VictoriaMetrics/fastcache"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/domains/ethereum"
+	"github.com/fox-one/mixin/kernel"
+	"github.com/fox-one/mixin/logger"
+	"github.com/fox-one/mixin/storage"
 	"github.com/stretchr/testify/assert"
 )
 

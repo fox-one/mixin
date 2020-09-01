@@ -1,7 +1,7 @@
 package ed25519
 
 import (
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 )
 
 type Key crypto.Key

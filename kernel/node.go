@@ -9,14 +9,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/kernel/internal/clock"
-	"github.com/MixinNetwork/mixin/logger"
-	"github.com/MixinNetwork/mixin/network"
-	"github.com/MixinNetwork/mixin/storage"
 	"github.com/VictoriaMetrics/fastcache"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/kernel/internal/clock"
+	"github.com/fox-one/mixin/logger"
+	"github.com/fox-one/mixin/network"
+	"github.com/fox-one/mixin/storage"
 )
 
 type Node struct {

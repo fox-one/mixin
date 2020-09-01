@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"crypto/sha512"
 
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/crypto/ed25519/edwards25519"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/crypto/ed25519/edwards25519"
 )
 
 func (k Key) SignWithChallenge(random crypto.PrivateKey, message []byte, hReduced [32]byte) (*crypto.Signature, error) {

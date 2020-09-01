@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/MixinNetwork/mixin/config"
-	"github.com/MixinNetwork/mixin/crypto"
-	"github.com/MixinNetwork/mixin/logger"
-	"github.com/MixinNetwork/mixin/util"
 	"github.com/VictoriaMetrics/fastcache"
+	"github.com/fox-one/mixin/config"
+	"github.com/fox-one/mixin/crypto"
+	"github.com/fox-one/mixin/logger"
+	"github.com/fox-one/mixin/util"
 )
 
 type Peer struct {

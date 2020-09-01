@@ -1,7 +1,7 @@
 package common
 
 import (
-	"github.com/MixinNetwork/mixin/crypto"
+	"github.com/fox-one/mixin/crypto"
 )
 
 type UTXO struct {

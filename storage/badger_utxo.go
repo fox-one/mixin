@@ -3,9 +3,9 @@ package storage
 import (
 	"fmt"
 
-	"github.com/MixinNetwork/mixin/common"
-	"github.com/MixinNetwork/mixin/crypto"
 	"github.com/dgraph-io/badger/v2"
+	"github.com/fox-one/mixin/common"
+	"github.com/fox-one/mixin/crypto"
 )
 
 func (s *BadgerStore) ReadUTXO(hash crypto.Hash, index int) (*common.UTXOWithLock, error) {
