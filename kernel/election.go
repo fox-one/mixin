@@ -52,16 +52,18 @@ func (node *Node) ElectionLoop() {
 		case <-node.done:
 			return
 		case <-ticker.C:
-			candi, err := node.checkRemovePossibility(node.IdForNetwork, node.GraphTimestamp)
-			if err != nil {
-				logger.Printf("checkRemovePossibility %s", err.Error())
-				continue
-			}
+			// disable send remove transaction
 
-			err = node.tryToSendRemoveTransaction(candi)
-			if err != nil {
-				logger.Println("tryToSendRemoveTransaction", err)
-			}
+			// candi, err := node.checkRemovePossibility(node.IdForNetwork, node.GraphTimestamp)
+			// if err != nil {
+			// 	logger.Printf("checkRemovePossibility %s", err.Error())
+			// 	continue
+			// }
+
+			// err = node.tryToSendRemoveTransaction(candi)
+			// if err != nil {
+			// 	logger.Println("tryToSendRemoveTransaction", err)
+			// }
 		}
 	}
 }
